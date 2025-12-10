@@ -1,0 +1,118 @@
+<svg width="800" height="320" viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="320" rx="16" fill="#020617"/>
+  <defs>
+    <linearGradient id="archbg" x1="0" y1="0" x2="800" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <marker id="archArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8Z" fill="#38BDF8"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="320" rx="16" fill="url(#archbg)" opacity="0.97"/>
+
+  <!-- Left column: Clients -->
+  <rect x="24" y="40" width="170" height="90" rx="10" fill="#020617" stroke="#38BDF8" stroke-width="1.4"/>
+  <text x="40" y="66" fill="#F9FAFB" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    Client Applications
+  </text>
+  <text x="40" y="88" fill="#E5E7EB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    APIs, gateways, AI tools,
+  </text>
+  <text x="40" y="106" fill="#E5E7EB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    agent frameworks
+  </text>
+
+  <rect x="24" y="160" width="170" height="90" rx="10" fill="#020617" stroke="#64748B" stroke-width="1.2"/>
+  <text x="40" y="186" fill="#F9FAFB" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    Secure Observability
+  </text>
+  <text x="40" y="208" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Encrypted logs, metrics,
+  </text>
+  <text x="40" y="224" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    traces &amp; audit events
+  </text>
+
+  <!-- SDK Layer -->
+  <rect x="220" y="60" width="170" height="70" rx="10" fill="#020617" stroke="#38BDF8" stroke-width="1.4"/>
+  <text x="236" y="84" fill="#F9FAFB" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    QyberCore SDK
+  </text>
+  <text x="236" y="106" fill="#E5E7EB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Python / Node / Java clients
+  </text>
+
+  <!-- Center: PQ Proxy big box -->
+  <rect x="414" y="30" width="250" height="260" rx="14" fill="#020617" stroke="#38BDF8" stroke-width="1.5"/>
+  <text x="432" y="56" fill="#F9FAFB" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    QyberCore PQ Proxy
+  </text>
+
+  <!-- Proxy sub-components -->
+  <rect x="430" y="72" width="218" height="52" rx="8" fill="#020617" stroke="#64748B" stroke-width="1.1"/>
+  <text x="444" y="94" fill="#F9FAFB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    PQC Engine
+  </text>
+  <text x="444" y="112" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Kyber key exchange, Dilithium signatures
+  </text>
+
+  <rect x="430" y="136" width="218" height="52" rx="8" fill="#020617" stroke="#64748B" stroke-width="1.1"/>
+  <text x="444" y="158" fill="#F9FAFB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    Policy &amp; Routing Engine
+  </text>
+  <text x="444" y="176" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Allow/deny, tenancy, traffic shaping
+  </text>
+
+  <rect x="430" y="200" width="218" height="52" rx="8" fill="#020617" stroke="#64748B" stroke-width="1.1"/>
+  <text x="444" y="222" fill="#F9FAFB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    Connectors &amp; Telemetry
+  </text>
+  <text x="444" y="240" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    LLM, vector DBs, logging pipelines
+  </text>
+
+  <!-- Right: targets -->
+  <rect x="690" y="40" width="90" height="80" rx="10" fill="#020617" stroke="#38BDF8" stroke-width="1.3"/>
+  <text x="700" y="66" fill="#F9FAFB" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    LLMs
+  </text>
+  <text x="700" y="88" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    OpenAI,
+  </text>
+  <text x="700" y="104" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Bedrock, etc.
+  </text>
+
+  <rect x="690" y="132" width="90" height="80" rx="10" fill="#020617" stroke="#38BDF8" stroke-width="1.3"/>
+  <text x="700" y="158" fill="#F9FAFB" font-size="13" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    Vector
+  </text>
+  <text x="700" y="176" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Pinecone,
+  </text>
+  <text x="700" y="192" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Qdrant, ES
+  </text>
+
+  <rect x="690" y="224" width="90" height="60" rx="10" fill="#020617" stroke="#64748B" stroke-width="1.2"/>
+  <text x="700" y="250" fill="#F9FAFB" font-size="12" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="600">
+    KMS / HSM
+  </text>
+  <text x="700" y="268" fill="#E5E7EB" font-size="11" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    Key mgmt
+  </text>
+
+  <!-- Arrows main path -->
+  <line x1="194" y1="85" x2="220" y2="85" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#archArrow)"/>
+  <line x1="390" y1="85" x2="414" y2="85" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#archArrow)"/>
+  <line x1="664" y1="80" x2="690" y2="80" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#archArrow)"/>
+  <line x1="664" y1="170" x2="690" y2="172" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#archArrow)"/>
+
+  <!-- Arrow from proxy to logs -->
+  <line x1="414" y1="230" x2="194" y2="205" stroke="#38BDF8" stroke-width="1.3" marker-end="url(#archArrow)"/>
+</svg>
+
