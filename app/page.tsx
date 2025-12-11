@@ -36,20 +36,34 @@ export default function Home() {
             <a href="#features" className="hover:text-cyan-300">
               Features
             </a>
+            <a href="#services" className="hover:text-cyan-300">
+              Services
+            </a>
             <a href="#architecture" className="hover:text-cyan-300">
               Architecture
+            </a>
+            <a href="#demo" className="hover:text-cyan-300">
+              Demo
             </a>
             <a href="#early" className="hover:text-cyan-300">
               Early access
             </a>
           </nav>
 
-          <a
-            href="#early"
-            className="rounded-full bg-cyan-500 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-cyan-400"
-          >
-            Join Early Access
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="mailto:contact@qybercore.com"
+              className="hidden text-xs text-slate-300 underline-offset-2 hover:text-cyan-300 hover:underline md:inline"
+            >
+              contact@qybercore.com
+            </a>
+            <a
+              href="#early"
+              className="rounded-full bg-cyan-500 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-cyan-400"
+            >
+              Join Early Access
+            </a>
+          </div>
         </div>
       </header>
 
@@ -311,7 +325,7 @@ resp = client.chat_completion(
           </ol>
         </section>
 
-        {/* ⭐ FEATURES – THIS IS THE SECTION YOU SAID WAS MISSING */}
+        {/* ⭐ FEATURES SECTION */}
         <section id="features" className="mt-20 space-y-4">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-50">
             Built for the Quantum Era of AI
@@ -363,7 +377,74 @@ resp = client.chat_completion(
           </div>
         </section>
 
-        {/* ARCHITECTURE – COMPLEX GRID */}
+        {/* 🧩 SERVICES SECTION */}
+        <section id="services" className="mt-20 space-y-4">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-50">
+            Services for Security &amp; Platform Teams
+          </h2>
+
+          <p className="max-w-2xl text-sm text-slate-300">
+            Beyond the platform, we work with early adopters to design and
+            implement quantum-safe AI architectures that fit their risk and
+            compliance requirements.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                QyberCore Shield
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-50">
+                LLM Traffic Hardening
+              </p>
+              <p className="mt-2 text-xs text-slate-300">
+                Design and rollout of QyberCore as a proxy in front of your LLM
+                stack. Includes integration with your gateways, agents and
+                observability tools.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                Vector Vault
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-50">
+                Embedding &amp; Vector Security
+              </p>
+              <p className="mt-2 text-xs text-slate-300">
+                Threat modeling, encryption strategy and policy definitions for
+                vector databases where your long-lived embeddings are stored.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                Quantum Readiness
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-50">
+                Assessment &amp; Roadmap
+              </p>
+              <p className="mt-2 text-xs text-slate-300">
+                Review of your current AI architecture, risk posture, and a
+                concrete migration roadmap to quantum-safe cryptography for LLM
+                workloads.
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-3 text-xs text-slate-400">
+            To discuss services, reach us at{" "}
+            <a
+              href="mailto:contact@qybercore.com"
+              className="text-cyan-300 underline-offset-2 hover:underline"
+            >
+              contact@qybercore.com
+            </a>
+            .
+          </p>
+        </section>
+
+        {/* 🧱 ARCHITECTURE – COMPLEX GRID */}
         <section id="architecture" className="mt-20 space-y-4">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-50">
             QyberCore Architecture
@@ -499,6 +580,40 @@ resp = client.chat_completion(
           </div>
         </section>
 
+        {/* 🎥 DEMO SECTION */}
+        <section
+          id="demo"
+          className="mt-20 rounded-2xl border border-slate-800 bg-slate-950/70 p-6"
+        >
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-50">
+            Live Demo
+          </h2>
+
+          <p className="mt-2 max-w-2xl text-sm text-slate-300">
+            We&apos;re preparing an interactive demo that shows QyberCore
+            securing real LLM traffic in under 10ms of additional latency.
+          </p>
+
+          <div className="mt-4 flex flex-wrap items-center gap-4">
+            <button
+              className="cursor-not-allowed rounded-full bg-slate-800 px-5 py-2.5 text-sm font-medium text-slate-400"
+              disabled
+            >
+              Coming soon
+            </button>
+            <p className="text-xs text-slate-400">
+              Want to see it early? Email{" "}
+              <a
+                href="mailto:contact@qybercore.com"
+                className="text-cyan-300 underline-offset-2 hover:underline"
+              >
+                contact@qybercore.com
+              </a>{" "}
+              and we&apos;ll schedule a private walkthrough.
+            </p>
+          </div>
+        </section>
+
         {/* EARLY ACCESS */}
         <section
           id="early"
@@ -509,16 +624,26 @@ resp = client.chat_completion(
           </h2>
 
           <p className="mt-2 max-w-2xl text-sm text-slate-300">
-            We’re onboarding a limited set of design partners. If you're running
-            AI in production and care about long-term security, let’s talk.
+            We&apos;re onboarding a limited set of design partners. If you&apos;re
+            running AI in production and care about long-term security, let&apos;s
+            talk.
           </p>
 
           <EarlyAccessForm />
         </section>
 
         {/* FOOTER */}
-        <footer className="mt-20 border-t border-slate-800 pt-6 text-sm text-slate-400">
-          © {new Date().getFullYear()} QyberCore. All rights reserved.
+        <footer className="mt-20 border-t border-slate-800 pt-6 text-sm text-slate-400 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <span>© {new Date().getFullYear()} QyberCore. All rights reserved.</span>
+          <span>
+            Contact:{" "}
+            <a
+              href="mailto:contact@qybercore.com"
+              className="text-cyan-300 underline-offset-2 hover:underline"
+            >
+              contact@qybercore.com
+            </a>
+          </span>
         </footer>
       </main>
     </div>
