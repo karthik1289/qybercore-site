@@ -214,7 +214,7 @@ function Card({ className, children }: { className?: string; children: React.Rea
  *   public/logo.svg  (or logo.png)
  * Then set LOGO_SRC accordingly (e.g. "/logo.svg")
  */
-const LOGO_SRC = ""; // set to "/logo.svg" once you add it to /public
+const LOGO_SRC = "/logo.svg"; // set to "/logo.svg" once you add it to /public
 
 function BrandMark() {
   const [imgOk, setImgOk] = useState(true);
