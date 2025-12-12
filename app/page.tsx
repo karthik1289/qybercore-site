@@ -32,12 +32,7 @@ function Icon({
   switch (name) {
     case "shield":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"
             stroke="currentColor"
@@ -55,12 +50,7 @@ function Icon({
       );
     case "lock":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M7.5 10V8.2A4.5 4.5 0 0 1 12 3.7a4.5 4.5 0 0 1 4.5 4.5V10"
             stroke="currentColor"
@@ -73,22 +63,12 @@ function Icon({
             strokeWidth="1.8"
             strokeLinejoin="round"
           />
-          <path
-            d="M12 14.2v3"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+          <path d="M12 14.2v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       );
     case "route":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M6 6h6a3 3 0 0 1 3 3v6"
             stroke="currentColor"
@@ -110,24 +90,9 @@ function Icon({
       );
     case "graph":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M5 19V5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M5 19h14"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 19V5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M5 19h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <path
             d="M7.5 15.5l3.2-3.2 2.2 2.2 4.4-5"
             stroke="currentColor"
@@ -139,12 +104,7 @@ function Icon({
       );
     case "key":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M14.5 10.5a4.5 4.5 0 1 0-3.8 4.4"
             stroke="currentColor"
@@ -162,12 +122,7 @@ function Icon({
       );
     case "spark":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M12 2l1.2 4.1L17 7l-3.8 1L12 12l-1.2-4-3.8-1 3.8-.9L12 2z"
             stroke="currentColor"
@@ -184,12 +139,7 @@ function Icon({
       );
     case "check":
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M20 6L9 17l-5-5"
             stroke="currentColor"
@@ -202,18 +152,8 @@ function Icon({
     case "arrow":
     default:
       return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M5 12h12"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <path
             d="M13 6l6 6-6 6"
             stroke="currentColor"
@@ -245,28 +185,16 @@ function SectionTitle({
 }) {
   return (
     <div>
-      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-        {kicker}
-      </div>
-      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-        {title}
-      </h2>
+      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">{kicker}</div>
+      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">{title}</h2>
       {subtitle ? (
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-          {subtitle}
-        </p>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{subtitle}</p>
       ) : null}
     </div>
   );
 }
 
-function Card({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
+function Card({ className, children }: { className?: string; children: React.ReactNode }) {
   return (
     <div
       className={cn(
@@ -281,16 +209,24 @@ function Card({
 }
 
 /**
- * ✅ Logo support:
- * - Put your actual logo file at: /public/logo.svg OR /public/logo.png
- * - This component renders it and falls back to the Q badge if missing.
- *
- * If you already have a different path, change LOGO_SRC below.
+ * ✅ Logo support
+ * Put your file here:
+ *   public/logo.svg  (or logo.png)
+ * Then set LOGO_SRC accordingly (e.g. "/logo.svg")
  */
-const LOGO_SRC = "/logo.svg"; // or "/logo.png"
+const LOGO_SRC = ""; // set to "/logo.svg" once you add it to /public
 
 function BrandMark() {
   const [imgOk, setImgOk] = useState(true);
+
+  // If you haven't added a logo file yet, show Q badge without attempting fetch.
+  if (!LOGO_SRC) {
+    return (
+      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-sm">
+        <span className="text-sm font-semibold">Q</span>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl bg-slate-900 text-white shadow-sm">
@@ -319,9 +255,7 @@ export default function Home() {
     useCase: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (field: keyof FormState, value: string) => {
@@ -355,7 +289,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
-      {/* Background (clean) */}
+      {/* Background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(1100px_540px_at_50%_-10%,rgba(59,130,246,0.10),transparent_55%),radial-gradient(900px_520px_at_15%_15%,rgba(16,185,129,0.10),transparent_55%),radial-gradient(900px_520px_at_85%_10%,rgba(99,102,241,0.08),transparent_55%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.35),rgba(255,255,255,1))]" />
@@ -365,14 +299,10 @@ export default function Home() {
       <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
           <a href="#top" className="flex items-center gap-3">
-            {/* ✅ Logo is here */}
             <BrandMark />
-
             <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-[0.18em] uppercase">
-                QyberCore
-              </div>
-              <div className="text-xs text-slate-500">Quantum-Safe AI Gateway</div>
+              <div className="text-sm font-semibold tracking-[0.18em] uppercase">QyberCore</div>
+              <div className="text-xs text-slate-500">Enterprise AI Control Plane • PQC by design</div>
             </div>
           </a>
 
@@ -380,14 +310,17 @@ export default function Home() {
             <a className="hover:text-slate-900" href="#platform">
               Platform
             </a>
+            <a className="hover:text-slate-900" href="#control-plane">
+              Control plane
+            </a>
             <a className="hover:text-slate-900" href="#architecture">
               Architecture
             </a>
             <a className="hover:text-slate-900" href="#demo">
               Demo
             </a>
-            <a className="hover:text-slate-900" href="#pricing">
-              Value
+            <a className="hover:text-slate-900" href="#competition">
+              Competition
             </a>
             <a className="hover:text-slate-900" href="#early-access">
               Early access
@@ -409,42 +342,41 @@ export default function Home() {
         </div>
       </header>
 
-      <div
-        id="top"
-        className="mx-auto max-w-6xl px-4 pb-24 pt-10 md:px-6 md:pt-14"
-      >
+      <div id="top" className="mx-auto max-w-6xl px-4 pb-24 pt-10 md:px-6 md:pt-14">
         {/* HERO */}
         <section className="grid items-start gap-10 md:grid-cols-2 md:gap-12">
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <Pill>
                 <Icon name="shield" className="h-4 w-4 text-emerald-600" />
-                Post-Quantum Transport
+                PQC Transport
               </Pill>
               <Pill>
                 <Icon name="lock" className="h-4 w-4 text-blue-600" />
-                Policy + Governance
+                Policy Enforcement
+              </Pill>
+              <Pill>
+                <Icon name="graph" className="h-4 w-4 text-slate-900" />
+                Verifiable Audit
               </Pill>
               <Pill>
                 <Icon name="route" className="h-4 w-4 text-indigo-600" />
-                Multi-Provider Routing
+                Provider Routing
               </Pill>
             </div>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              The enterprise gateway for{" "}
+              The{" "}
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
-                quantum-safe LLM traffic
-              </span>
-              .
+                enterprise AI control plane
+              </span>{" "}
+              with quantum-safe security built in.
             </h1>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              QyberCore sits between your apps and model providers to enforce{" "}
-              <span className="font-semibold text-slate-900">
-                encryption, governance, routing, and auditability
-              </span>{" "}
-              — without redesigning your stack.
+              QyberCore sits between your apps and model providers. We don’t just encrypt traffic — we enforce{" "}
+              <span className="font-semibold text-slate-900">policy, routing, and provable audit trails</span> across
+              every LLM call.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -455,43 +387,25 @@ export default function Home() {
                 View demo <Icon name="arrow" className="h-4 w-4" />
               </a>
               <a
-                href="#architecture"
+                href="#control-plane"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
               >
-                See architecture
+                Why we’re defensible
               </a>
             </div>
 
-            {/* concise credibility block */}
             <div className="mt-7 rounded-3xl border border-slate-200 bg-white p-5">
               <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-                Demo vs Production SDK
+                What makes this valuable
               </div>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                The web demo shows plaintext for readability, but it still generates
-                and transmits the same encrypted envelopes used by the SDK. In
-                production, your app sends only PQC-secured ciphertext to QyberCore
-                — raw prompts are not sent over the wire.
+                PQC is the wedge. The product is the control plane: a policy engine + routing plane + tamper-evident
+                audit — designed for regulated enterprises running copilots and agents.
               </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
-                  <Icon name="key" className="h-4 w-4 text-slate-700" />
-                  Kyber KEM → session key
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
-                  <Icon name="lock" className="h-4 w-4 text-slate-700" />
-                  AES-256-GCM envelopes
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
-                  <Icon name="graph" className="h-4 w-4 text-slate-700" />
-                  Audit-ready metadata (roadmap)
-                </span>
-              </div>
             </div>
           </div>
 
-          {/* RIGHT HERO CARD */}
+          {/* RIGHT HERO CARD (kept same diagram) */}
           <Card className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -508,163 +422,50 @@ export default function Home() {
             </div>
 
             <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <svg
-                viewBox="0 0 760 260"
-                className="h-64 w-[760px]"
-                role="img"
-                aria-label="QyberCore data plane diagram"
-              >
+              <svg viewBox="0 0 760 260" className="h-64 w-[760px]" role="img" aria-label="QyberCore data plane diagram">
                 <defs>
-                  <marker
-                    id="arrowNavy"
-                    markerWidth="8"
-                    markerHeight="8"
-                    refX="7"
-                    refY="4"
-                    orient="auto"
-                  >
+                  <marker id="arrowNavy" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                     <path d="M0 0 L8 4 L0 8 Z" fill="#0f172a" />
                   </marker>
-                  <marker
-                    id="arrowBlue"
-                    markerWidth="8"
-                    markerHeight="8"
-                    refX="7"
-                    refY="4"
-                    orient="auto"
-                  >
+                  <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                     <path d="M0 0 L8 4 L0 8 Z" fill="#2563eb" />
                   </marker>
                 </defs>
 
-                {/* client */}
-                <rect
-                  x="20"
-                  y="95"
-                  width="160"
-                  height="70"
-                  rx="16"
-                  fill="#ffffff"
-                  stroke="#e2e8f0"
-                />
-                <text
-                  x="100"
-                  y="123"
-                  textAnchor="middle"
-                  fontSize="12"
-                  fill="#0f172a"
-                  fontWeight="700"
-                >
+                <rect x="20" y="95" width="160" height="70" rx="16" fill="#ffffff" stroke="#e2e8f0" />
+                <text x="100" y="123" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="700">
                   Client Apps
                 </text>
-                <text
-                  x="100"
-                  y="142"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#64748b"
-                >
+                <text x="100" y="142" textAnchor="middle" fontSize="10" fill="#64748b">
                   SDK / Agents
                 </text>
 
-                {/* arrow to gateway */}
-                <path
-                  d="M180 130 L260 130"
-                  stroke="#0f172a"
-                  strokeWidth="2.2"
-                  markerEnd="url(#arrowNavy)"
-                />
-                <text
-                  x="220"
-                  y="112"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#0f172a"
-                  fontWeight="600"
-                >
+                <path d="M180 130 L260 130" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
+                <text x="220" y="112" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="600">
                   PQC Handshake
                 </text>
-                <text
-                  x="220"
-                  y="126"
-                  textAnchor="middle"
-                  fontSize="9"
-                  fill="#64748b"
-                >
+                <text x="220" y="126" textAnchor="middle" fontSize="9" fill="#64748b">
                   Kyber → session key
                 </text>
 
-                {/* gateway */}
-                <rect
-                  x="260"
-                  y="55"
-                  width="250"
-                  height="150"
-                  rx="20"
-                  fill="#ffffff"
-                  stroke="#cbd5e1"
-                />
-                <text
-                  x="385"
-                  y="82"
-                  textAnchor="middle"
-                  fontSize="12"
-                  fill="#0f172a"
-                  fontWeight="800"
-                >
+                <rect x="260" y="55" width="250" height="150" rx="20" fill="#ffffff" stroke="#cbd5e1" />
+                <text x="385" y="82" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="800">
                   QyberCore Gateway
                 </text>
-                <text
-                  x="385"
-                  y="100"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#64748b"
-                >
+                <text x="385" y="100" textAnchor="middle" fontSize="10" fill="#64748b">
                   Terminate PQC • Enforce Policy • Route
                 </text>
 
-                <rect
-                  x="295"
-                  y="118"
-                  width="180"
-                  height="38"
-                  rx="12"
-                  fill="#f8fafc"
-                  stroke="#dbeafe"
-                />
-                <text
-                  x="385"
-                  y="142"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#1d4ed8"
-                  fontWeight="700"
-                >
+                <rect x="295" y="118" width="180" height="38" rx="12" fill="#f8fafc" stroke="#dbeafe" />
+                <text x="385" y="142" textAnchor="middle" fontSize="10" fill="#1d4ed8" fontWeight="700">
                   Policy + Routing Engine
                 </text>
 
-                <rect
-                  x="295"
-                  y="162"
-                  width="180"
-                  height="38"
-                  rx="12"
-                  fill="#f8fafc"
-                  stroke="#dcfce7"
-                />
-                <text
-                  x="385"
-                  y="186"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#047857"
-                  fontWeight="700"
-                >
+                <rect x="295" y="162" width="180" height="38" rx="12" fill="#f8fafc" stroke="#dcfce7" />
+                <text x="385" y="186" textAnchor="middle" fontSize="10" fill="#047857" fontWeight="700">
                   Encrypt Response (AES-GCM)
                 </text>
 
-                {/* arrows to providers */}
                 <path
                   d="M510 120 C580 90 620 90 670 106"
                   stroke="#2563eb"
@@ -680,44 +481,13 @@ export default function Home() {
                   markerEnd="url(#arrowBlue)"
                 />
 
-                {/* providers */}
-                <rect
-                  x="670"
-                  y="88"
-                  width="70"
-                  height="46"
-                  rx="14"
-                  fill="#ffffff"
-                  stroke="#e2e8f0"
-                />
-                <text
-                  x="705"
-                  y="116"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#0f172a"
-                  fontWeight="700"
-                >
+                <rect x="670" y="88" width="70" height="46" rx="14" fill="#ffffff" stroke="#e2e8f0" />
+                <text x="705" y="116" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
                   OpenAI
                 </text>
 
-                <rect
-                  x="670"
-                  y="142"
-                  width="70"
-                  height="46"
-                  rx="14"
-                  fill="#ffffff"
-                  stroke="#e2e8f0"
-                />
-                <text
-                  x="705"
-                  y="170"
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="#0f172a"
-                  fontWeight="700"
-                >
+                <rect x="670" y="142" width="70" height="46" rx="14" fill="#ffffff" stroke="#e2e8f0" />
+                <text x="705" y="170" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
                   Others
                 </text>
               </svg>
@@ -727,33 +497,31 @@ export default function Home() {
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
                   <Icon name="shield" className="h-4 w-4 text-emerald-700" />
-                  Threat model
+                  PQC wedge
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  Protect against “harvest now, decrypt later” by securing transport
-                  with PQC-derived session keys.
+                  Secure “harvest now, decrypt later” risk with PQC-derived session keys.
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                  <Icon name="graph" className="h-4 w-4 text-blue-700" />
-                  Enterprise value
+                  <Icon name="graph" className="h-4 w-4 text-slate-900" />
+                  Real value
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  Governance + routing + observability is the wedge — not “just
-                  encryption”.
+                  Control + audit + routing at scale (policy DSL + verifiable logs).
                 </p>
               </div>
             </div>
           </Card>
         </section>
 
-        {/* PLATFORM */}
+        {/* PLATFORM (kept, but reworded slightly) */}
         <section id="platform" className="mt-20">
           <SectionTitle
             kicker="Platform"
-            title="Built like real enterprise infrastructure"
-            subtitle="Enterprises don’t pay for a demo. They pay for control, visibility, and enforceable policy — across every LLM call."
+            title="We secure traffic — but we sell control"
+            subtitle="PQC is necessary. Enterprises pay for enforceable governance, routing, and auditability across every model and agent."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -763,22 +531,10 @@ export default function Home() {
                   <Icon name="key" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">PQC transport layer</div>
+                  <div className="text-sm font-semibold">Quantum-safe transport</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    Establish per-session keys via a Kyber-based handshake and
-                    encrypt payloads with AES-256-GCM. Keeps traffic safe even if
-                    captured today and attacked later.
+                    PQC session establishment + encrypted envelopes for long-term confidentiality of AI traffic.
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                      Session-scoped keys (reduces blast radius)
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                      Encrypted envelopes (request + response)
-                    </li>
-                  </ul>
                 </div>
               </div>
             </Card>
@@ -789,22 +545,10 @@ export default function Home() {
                   <Icon name="lock" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Policy & governance</div>
+                  <div className="text-sm font-semibold">Policy enforcement</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    A single point to enforce who can call which model, with what
-                    limits and controls. Works across providers instead of
-                    per-provider configuration drift.
+                    Model access control, content policies, and approvals — consistent across providers (roadmap).
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                      RBAC / API keys (roadmap)
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                      DLP / redaction hooks (roadmap)
-                    </li>
-                  </ul>
                 </div>
               </div>
             </Card>
@@ -815,21 +559,10 @@ export default function Home() {
                   <Icon name="route" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Provider routing plane</div>
+                  <div className="text-sm font-semibold">Routing plane</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    Route across providers (OpenAI today; Bedrock/others next) with
-                    sensible defaults and future failover / cost-based routing.
+                    Multi-provider routing, fallback, cost/perf policy routing (roadmap).
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-indigo-700" />
-                      Single integration surface for apps
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-indigo-700" />
-                      Consistent controls across providers
-                    </li>
-                  </ul>
                 </div>
               </div>
             </Card>
@@ -840,23 +573,92 @@ export default function Home() {
                   <Icon name="graph" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Observability & audit</div>
+                  <div className="text-sm font-semibold">Audit & observability</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    Enterprises buy dashboards. We’ll ship request metadata, usage
-                    analytics, and export paths into SIEM/data warehouses (roadmap).
+                    Request metadata, dashboards, exports to SIEM/warehouses — with cryptographic integrity (roadmap).
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-slate-900" />
-                      Metadata logs (no prompt content by default)
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-slate-900" />
-                      Token/cost metrics and anomaly detection (roadmap)
-                    </li>
-                  </ul>
                 </div>
               </div>
+            </Card>
+          </div>
+        </section>
+
+        {/* CONTROL PLANE / DEFENSIBILITY (NEW) */}
+        <section id="control-plane" className="mt-20">
+          <SectionTitle
+            kicker="Defensibility"
+            title="What we provide beyond PQC (the real moat)"
+            subtitle="Crypto primitives are not the product. The product is an enterprise control plane that makes AI traffic governable, auditable, and provable."
+          />
+
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            <Card className="p-6">
+              <div className="flex items-center gap-2 text-sm font-semibold">
+                <Icon name="lock" className="h-5 w-5 text-blue-700" />
+                Policy DSL
+              </div>
+              <p className="mt-2 text-sm text-slate-600">
+                Declare AI policies like “PII → redact + block”, “EU users → EU-only models”, “high-risk → review”.
+                This becomes sticky platform infrastructure.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-2 text-sm font-semibold">
+                <Icon name="graph" className="h-5 w-5 text-slate-900" />
+                Verifiable audit logs
+              </div>
+              <p className="mt-2 text-sm text-slate-600">
+                Tamper-evident audit trails: prove what policy ran, when, and on which model — without storing raw prompts.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-2 text-sm font-semibold">
+                <Icon name="route" className="h-5 w-5 text-indigo-700" />
+                AI supply-chain lineage
+              </div>
+              <p className="mt-2 text-sm text-slate-600">
+                Track agent → tool → model → response lineage. This is “SLSA for AI systems” and is hard to replicate.
+              </p>
+            </Card>
+          </div>
+
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            <Card className="p-6">
+              <div className="text-sm font-semibold">Why enterprises buy</div>
+              <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
+                  One enforcement point across every app and provider
+                </li>
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
+                  Auditable controls without prompt retention by default
+                </li>
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
+                  Future-ready security posture (PQC) + compliance story
+                </li>
+              </ul>
+            </Card>
+
+            <Card className="p-6">
+              <div className="text-sm font-semibold">What we will ship next</div>
+              <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                  Tenant isolation + key rotation (control plane)
+                </li>
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                  Policy packs (PII, finance, healthcare, export controls)
+                </li>
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                  Dashboards + SIEM export + anomaly detection
+                </li>
+              </ul>
             </Card>
           </div>
         </section>
@@ -866,24 +668,24 @@ export default function Home() {
           <SectionTitle
             kicker="Architecture"
             title="Two planes: data plane now, control plane next"
-            subtitle="The current MVP proves the PQC-secured data plane. The product value compounds when the control plane manages tenants, keys, policies, and analytics."
+            subtitle="The MVP proves the encrypted data plane. The defensible product is the control plane: policies, keys, tenants, routing, audit, and analytics."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <Card className="p-6">
               <div className="text-sm font-semibold">Data plane (MVP)</div>
               <p className="mt-2 text-sm text-slate-600">
-                Encrypted request envelopes → decrypt inside gateway → policy/routing → provider → encrypted response.
+                Encrypted envelopes → decrypt inside gateway → policy/routing → provider → encrypted response.
               </p>
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
                 <div className="flex items-center gap-2 font-semibold text-slate-900">
                   <Icon name="shield" className="h-4 w-4 text-emerald-700" />
-                  What’s real today
+                  Live today
                 </div>
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li className="flex items-start gap-2">
                     <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                    Kyber-based handshake → session key
+                    Kyber session establishment
                   </li>
                   <li className="flex items-start gap-2">
                     <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
@@ -900,25 +702,25 @@ export default function Home() {
             <Card className="p-6">
               <div className="text-sm font-semibold">Control plane (roadmap)</div>
               <p className="mt-2 text-sm text-slate-600">
-                Tenant keys, policy packs, audit sinks, routing rules, and dashboards.
+                Tenant keys, policy packs, audit sinks, routing rules, dashboards.
               </p>
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
                 <div className="flex items-center gap-2 font-semibold text-slate-900">
                   <Icon name="spark" className="h-4 w-4 text-blue-700" />
-                  What makes this “enterprise”
+                  Enterprise-grade differentiators
                 </div>
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li className="flex items-start gap-2">
                     <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                    Tenant isolation + key rotation
+                    Policy DSL + approvals
                   </li>
                   <li className="flex items-start gap-2">
                     <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                    DLP/redaction policies + approvals
+                    Verifiable audit log (tamper-evident)
                   </li>
                   <li className="flex items-start gap-2">
                     <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                    Traffic dashboards + SIEM export
+                    Traffic analytics + anomaly detection
                   </li>
                 </ul>
               </div>
@@ -931,7 +733,7 @@ export default function Home() {
           <SectionTitle
             kicker="Demo"
             title="Try the encrypted request flow"
-            subtitle="The demo console is a transparency layer. Production SDK integrations keep plaintext off the wire while preserving the same cryptographic envelope format."
+            subtitle="The demo console is for transparency. Production SDK integrations keep plaintext off the wire while preserving the same envelope format."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -940,7 +742,7 @@ export default function Home() {
               <ul className="mt-3 space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Encrypted prompt envelope (base64)
+                  PQC session + encrypted envelope (base64)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
@@ -969,70 +771,69 @@ export default function Home() {
             <Card className="p-6">
               <div className="text-sm font-semibold">SDK (coming)</div>
               <p className="mt-2 text-sm text-slate-600">
-                Drop-in clients for Python and Node.js that automatically handle:
+                Drop-in clients for Python and Node.js that automatically handle session establishment and envelopes.
               </p>
               <ul className="mt-3 space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Session establishment + envelope encryption
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Provider routing headers + policies
+                  SDK sends ciphertext only (no plaintext over wire)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
                   Telemetry + request IDs for audit trails
                 </li>
+                <li className="flex items-start gap-2">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                  Policy headers and routing hints
+                </li>
               </ul>
-
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-                <div className="font-semibold text-slate-900">Demo status</div>
-                <div className="mt-1 text-slate-600">
-                  Public demo: available • SDK distribution: by early access
-                </div>
-              </div>
             </Card>
           </div>
         </section>
 
-        {/* VALUE / PRICING */}
-        <section id="pricing" className="mt-20">
+        {/* COMPETITION (NEW) */}
+        <section id="competition" className="mt-20">
           <SectionTitle
-            kicker="Value"
-            title="Why this is not “just a demo”"
-            subtitle="The high-value product is the enterprise control plane: governance, auditability, policy packs, and traffic analytics — plus PQC transport as the differentiator."
+            kicker="Competition"
+            title="Where we are different"
+            subtitle="Most products do one piece: crypto OR AI gateway OR observability. QyberCore combines PQC transport with an enterprise control plane and verifiable audit."
           />
 
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            <Card className="p-6">
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <Icon name="lock" className="h-5 w-5 text-blue-700" />
-                Governance
-              </div>
-              <p className="mt-2 text-sm text-slate-600">
-                Central policies for model access, redaction, and approval flows.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <Icon name="graph" className="h-5 w-5 text-slate-900" />
-                Observability
-              </div>
-              <p className="mt-2 text-sm text-slate-600">
-                Usage dashboards, anomaly detection, and SIEM/warehouse exports.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <Icon name="shield" className="h-5 w-5 text-emerald-700" />
-                PQC differentiation
-              </div>
-              <p className="mt-2 text-sm text-slate-600">
-                A clear answer to quantum risk and “harvest-now, decrypt-later”.
-              </p>
-            </Card>
-          </div>
+          <Card className="mt-8 p-6">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[780px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-slate-200 text-xs uppercase tracking-[0.18em] text-slate-500">
+                    <th className="py-3 pr-4">Category</th>
+                    <th className="py-3 pr-4">What they do</th>
+                    <th className="py-3 pr-4">Gap we target</th>
+                  </tr>
+                </thead>
+                <tbody className="text-slate-700">
+                  <tr className="border-b border-slate-100">
+                    <td className="py-4 pr-4 font-semibold">PQC vendors / crypto services</td>
+                    <td className="py-4 pr-4">Encryption modernization, key mgmt, consulting</td>
+                    <td className="py-4 pr-4">Not LLM-native: no AI policy DSL, routing, or AI audit trails</td>
+                  </tr>
+                  <tr className="border-b border-slate-100">
+                    <td className="py-4 pr-4 font-semibold">Edge security (WAF/CDN)</td>
+                    <td className="py-4 pr-4">Network security, TLS, WAF controls</td>
+                    <td className="py-4 pr-4">Not model-aware; can’t enforce prompt/agent governance</td>
+                  </tr>
+                  <tr className="border-b border-slate-100">
+                    <td className="py-4 pr-4 font-semibold">AI gateways / observability</td>
+                    <td className="py-4 pr-4">Logs, routing, cost tracking</td>
+                    <td className="py-4 pr-4">Weak security posture; few provide PQC + verifiable audits</td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 pr-4 font-semibold">Cloud-native model platforms</td>
+                    <td className="py-4 pr-4">Provider-specific controls</td>
+                    <td className="py-4 pr-4">Not neutral; hard to unify across providers and agent toolchains</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
         </section>
 
         {/* EARLY ACCESS */}
@@ -1040,7 +841,7 @@ export default function Home() {
           <SectionTitle
             kicker="Early access"
             title="Work with us as a design partner"
-            subtitle="If you’re deploying copilots or agents in production, we’ll help you route that traffic through a quantum-safe, policy-enforced gateway."
+            subtitle="If you’re deploying copilots or agents in production, we’ll help route that traffic through a quantum-safe, policy-enforced gateway."
           />
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 md:items-start">
@@ -1053,7 +854,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Influence roadmap: policies, routing, observability
+                  Influence roadmap: policies, routing, audit & dashboards
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
@@ -1076,9 +877,7 @@ export default function Home() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
-                    <label className="text-xs font-semibold text-slate-700">
-                      Name
-                    </label>
+                    <label className="text-xs font-semibold text-slate-700">Name</label>
                     <input
                       value={form.name}
                       onChange={(e) => handleChange("name", e.target.value)}
@@ -1087,9 +886,7 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-slate-700">
-                      Work email
-                    </label>
+                    <label className="text-xs font-semibold text-slate-700">Work email</label>
                     <input
                       type="email"
                       value={form.email}
@@ -1101,9 +898,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-700">
-                    Company / Org
-                  </label>
+                  <label className="text-xs font-semibold text-slate-700">Company / Org</label>
                   <input
                     value={form.company}
                     onChange={(e) => handleChange("company", e.target.value)}
@@ -1112,9 +907,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-700">
-                    Use case
-                  </label>
+                  <label className="text-xs font-semibold text-slate-700">Use case</label>
                   <textarea
                     rows={4}
                     value={form.useCase}
@@ -1139,17 +932,12 @@ export default function Home() {
 
                 {status === "success" && (
                   <p className="text-sm text-emerald-700">
-                    Received. We’ll reply from{" "}
-                    <span className="font-semibold">contact@qybercore.com</span>.
+                    Received. We’ll reply from <span className="font-semibold">contact@qybercore.com</span>.
                   </p>
                 )}
-                {status === "error" && (
-                  <p className="text-sm text-red-600">{errorMessage}</p>
-                )}
+                {status === "error" && <p className="text-sm text-red-600">{errorMessage}</p>}
 
-                <p className="text-xs text-slate-500">
-                  We use your details only to contact you about QyberCore.
-                </p>
+                <p className="text-xs text-slate-500">We use your details only to contact you about QyberCore.</p>
               </form>
             </Card>
           </div>
@@ -1162,10 +950,7 @@ export default function Home() {
               <a className="hover:text-slate-700" href="/demo">
                 Demo
               </a>
-              <a
-                className="hover:text-slate-700"
-                href="mailto:contact@qybercore.com"
-              >
+              <a className="hover:text-slate-700" href="mailto:contact@qybercore.com">
                 contact@qybercore.com
               </a>
             </div>
