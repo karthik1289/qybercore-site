@@ -26,8 +26,7 @@ function Icon({
     | "spark"
     | "check"
     | "arrow"
-    | "bolt"
-    | "external";
+    | "bolt";
   className?: string;
 }) {
   const common = cn("inline-block", className);
@@ -167,32 +166,6 @@ function Icon({
           />
         </svg>
       );
-    case "external":
-      return (
-        <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M14 5h5v5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M10 14L19 5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M19 14v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
     case "arrow":
     default:
       return (
@@ -229,17 +202,9 @@ function SectionTitle({
 }) {
   return (
     <div>
-      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-        {kicker}
-      </div>
-      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-        {title}
-      </h2>
-      {subtitle ? (
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-          {subtitle}
-        </p>
-      ) : null}
+      <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">{kicker}</div>
+      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">{title}</h2>
+      {subtitle ? <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{subtitle}</p> : null}
     </div>
   );
 }
@@ -263,25 +228,7 @@ function LogoMark({ src = "/logo.svg" }: { src?: string }) {
     <div className="flex items-center gap-3">
       <div className="relative h-10 w-10 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={src}
-          alt="QyberCore logo"
-          className="h-full w-full object-contain p-1.5"
-          onError={(e) => {
-            // Fallback if /public/logo.svg isn't present
-            const img = e.currentTarget;
-            img.style.display = "none";
-            const parent = img.parentElement;
-            if (parent && !parent.querySelector("[data-fallback='1']")) {
-              const el = document.createElement("div");
-              el.setAttribute("data-fallback", "1");
-              el.className =
-                "flex h-full w-full items-center justify-center bg-slate-900 text-white";
-              el.innerText = "Q";
-              parent.appendChild(el);
-            }
-          }}
-        />
+        <img src={src} alt="QyberCore logo" className="h-full w-full object-contain p-1.5" />
       </div>
       <div className="leading-tight">
         <div className="text-sm font-semibold tracking-[0.18em] uppercase">QyberCore</div>
@@ -294,23 +241,11 @@ function LogoMark({ src = "/logo.svg" }: { src?: string }) {
 export default function Home() {
   const year = useMemo(() => new Date().getFullYear(), []);
 
-  // Demo runs on FastAPI (8000) locally; in prod set NEXT_PUBLIC_DEMO_URL
-  const DEMO_URL =
-    process.env.NEXT_PUBLIC_DEMO_URL || "http://127.0.0.1:8000/demo";
-
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    email: "",
-    company: "",
-    useCase: "",
-  });
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
-    "idle"
-  );
+  const [form, setForm] = useState<FormState>({ name: "", email: "", company: "", useCase: "" });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleChange = (field: keyof FormState, value: string) =>
-    setForm((p) => ({ ...p, [field]: value }));
+  const handleChange = (field: keyof FormState, value: string) => setForm((p) => ({ ...p, [field]: value }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -361,6 +296,9 @@ export default function Home() {
             <a className="hover:text-slate-900" href="#demo">
               Demo
             </a>
+            <a className="hover:text-slate-900" href="/security">
+              Security
+            </a>
             <a className="hover:text-slate-900" href="#early-access">
               Early access
             </a>
@@ -401,19 +339,18 @@ export default function Home() {
             </div>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Post-Quantum secure{" "}
+              Post-quantum resistant{" "}
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
                 data plane
               </span>{" "}
-              for AI inference — with an enterprise control plane for policy, routing, and audit.
+              for AI inference with a control plane roadmap for policy, routing, and auditability.
             </h1>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              QyberCore protects prompts, responses, and inference metadata against{" "}
-              <span className="font-semibold text-slate-900">harvest-now, decrypt-later</span>{" "}
-              attacks using{" "}
-              <span className="font-semibold text-slate-900">lattice-based cryptography</span>{" "}
-              and tenant-bound session encryption.
+              QyberCore is designed to reduce long-term exposure from{" "}
+              <span className="font-semibold text-slate-900">harvest-now, decrypt-later</span> attacks by using{" "}
+              <span className="font-semibold text-slate-900">lattice-based cryptography</span> to derive tenant-bound
+              session keys and protect AI traffic between clients and the gateway.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -423,20 +360,12 @@ export default function Home() {
               >
                 Request early access <Icon name="arrow" className="h-4 w-4" />
               </a>
-
-              {/* Demo CTA: open FastAPI demo (8000 locally) */}
               <a
-                href={DEMO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#demo"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
               >
-                View interactive demo <Icon name="external" className="h-4 w-4" />
+                View demo
               </a>
-            </div>
-
-            <div className="mt-3 text-xs text-slate-500">
-              Demo runs on a separate QyberCore data plane (local: <span className="font-semibold">:8000</span>).
             </div>
 
             <div className="mt-7 rounded-3xl border border-slate-200 bg-white p-5">
@@ -444,9 +373,9 @@ export default function Home() {
                 Demo vs Production Mode
               </div>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                The demo UI shows readable outputs for clarity. Production QyberCore SDK integrations
-                encrypt requests <span className="font-semibold text-slate-900">before leaving the client</span> and
-                decrypt only inside a governed boundary.
+                The demo UI shows readable outputs for clarity. Production SDK integrations are intended to encrypt
+                requests <span className="font-semibold text-slate-900">before leaving the client</span> and decrypt only
+                inside a governed boundary.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
@@ -459,7 +388,7 @@ export default function Home() {
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
                   <Icon name="graph" className="h-4 w-4 text-slate-700" />
-                  Audit-ready metadata (control plane)
+                  Control plane telemetry (roadmap)
                 </span>
               </div>
             </div>
@@ -473,21 +402,16 @@ export default function Home() {
                   Security boundary
                 </div>
                 <div className="mt-2 text-sm text-slate-600">
-                  Encrypt on client → enforce policy inside gateway → re-encrypt response
+                  Encrypt on client → governed boundary in gateway → re-encrypt response
                 </div>
               </div>
               <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
-                PQC enabled
+                PQC preview
               </span>
             </div>
 
             <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <svg
-                viewBox="0 0 860 280"
-                className="h-64 w-[860px]"
-                role="img"
-                aria-label="QyberCore data plane diagram"
-              >
+              <svg viewBox="0 0 860 280" className="h-64 w-[860px]" role="img" aria-label="QyberCore data plane diagram">
                 <defs>
                   <marker id="arrowNavy" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                     <path d="M0 0 L8 4 L0 8 Z" fill="#0f172a" />
@@ -509,7 +433,7 @@ export default function Home() {
                 {/* handshake arrow */}
                 <path d="M202 141 L302 141" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
                 <text x="252" y="120" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
-                  Post-Quantum handshake
+                  Post-quantum handshake
                 </text>
                 <text x="252" y="134" textAnchor="middle" fontSize="9" fill="#64748b">
                   Kyber → session key
@@ -521,7 +445,7 @@ export default function Home() {
                   QyberCore Gateway
                 </text>
                 <text x="462" y="100" textAnchor="middle" fontSize="10" fill="#64748b">
-                  Terminate PQC • Enforce Policy • Route • Meter
+                  Terminate PQC • Apply policy/routing • Forward • Re-encrypt
                 </text>
 
                 <rect x="332" y="118" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dbeafe" />
@@ -570,16 +494,17 @@ export default function Home() {
                   Threat model
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  Attackers can record AI traffic today and decrypt later. PQC transport reduces long-term exposure.
+                  Adversaries may record AI traffic today for future decryption. PQC transport is designed to reduce
+                  long-term exposure.
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
                   <Icon name="graph" className="h-4 w-4 text-blue-700" />
-                  Enterprise value
+                  What’s next
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  The moat is the control plane: policies, audit, routing, metering — plus PQC differentiation.
+                  Control plane features are roadmap items: tenant lifecycle, policy packs, routing rules, and audit/telemetry exports.
                 </p>
               </div>
             </div>
@@ -590,18 +515,18 @@ export default function Home() {
         <section id="problem" className="mt-20">
           <SectionTitle
             kicker="Problem"
-            title="AI traffic is a long-term liability"
-            subtitle="Most AI apps rely on cryptography and trust models that won’t survive the quantum era. Attackers don’t need to decrypt today — they only need to record today."
+            title="AI traffic is a long-term confidentiality risk"
+            subtitle="Many AI apps rely on cryptography and trust models that may not be sufficient in a post-quantum world. An attacker doesn’t need to decrypt today — only to record today."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <Card className="p-6">
               <div className="flex items-center gap-2 text-sm font-semibold">
                 <Icon name="lock" className="h-5 w-5 text-blue-700" />
-                TLS termination risk
+                TLS termination exposure
               </div>
               <p className="mt-2 text-sm text-slate-600">
-                Prompts often become plaintext inside internal networks, proxies, or provider tooling after TLS terminates.
+                Prompts can become plaintext inside internal networks, proxies, or provider tooling after TLS terminates.
               </p>
             </Card>
             <Card className="p-6">
@@ -610,16 +535,16 @@ export default function Home() {
                 Harvest-now, decrypt-later
               </div>
               <p className="mt-2 text-sm text-slate-600">
-                Recorded traffic can be stored and decrypted later as quantum capabilities mature.
+                Recorded traffic may be stored and decrypted later as quantum capabilities mature.
               </p>
             </Card>
             <Card className="p-6">
               <div className="flex items-center gap-2 text-sm font-semibold">
                 <Icon name="graph" className="h-5 w-5 text-slate-900" />
-                No cryptographic tenant isolation
+                Limited cryptographic tenant binding
               </div>
               <p className="mt-2 text-sm text-slate-600">
-                API keys and gateways don’t cryptographically bind encryption context to tenant and request identity.
+                API keys and gateways often don’t cryptographically bind encryption context to tenant and request identity.
               </p>
             </Card>
           </div>
@@ -629,8 +554,8 @@ export default function Home() {
         <section id="solution" className="mt-20">
           <SectionTitle
             kicker="Solution"
-            title="A quantum-safe AI data plane"
-            subtitle="QyberCore sits between your applications and model providers to enforce encryption, governance, routing, and auditability — without redesigning your stack."
+            title="A post-quantum resistant AI data plane"
+            subtitle="QyberCore sits between your applications and model providers to apply encryption, governance hooks, routing, and telemetry without redesigning your stack."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -640,7 +565,7 @@ export default function Home() {
                   <Icon name="key" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Post-quantum transport</div>
+                  <div className="text-sm font-semibold">Post-quantum key establishment</div>
                   <p className="mt-2 text-sm text-slate-600">
                     Establish per-session shared secrets via lattice-based cryptography, then derive symmetric session keys
                     for fast encrypted envelopes.
@@ -665,19 +590,18 @@ export default function Home() {
                   <Icon name="lock" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Governed decryption boundary</div>
+                  <div className="text-sm font-semibold">Governed boundary inside the gateway</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    Decrypt only inside QyberCore’s governed boundary, enforce policies, then forward to providers and
-                    re-encrypt responses.
+                    Decrypt only inside the gateway boundary, apply routing/policy hooks, forward to providers, and re-encrypt responses.
                   </p>
                   <ul className="mt-3 space-y-2 text-sm text-slate-600">
                     <li className="flex items-start gap-2">
                       <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                      Routing & policy decisions centralized
+                      Centralized policy + routing enforcement
                     </li>
                     <li className="flex items-start gap-2">
                       <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                      Designed for audit and observability
+                      Telemetry for audit/export (roadmap)
                     </li>
                   </ul>
                 </div>
@@ -692,10 +616,9 @@ export default function Home() {
                   <Icon name="route" className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-semibold">Provider-agnostic routing plane</div>
+                  <div className="text-sm font-semibold">Provider-agnostic routing surface</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    One integration surface for apps. Route across providers with consistent governance. Start with OpenAI;
-                    extend to others as the control plane evolves.
+                    One integration surface for apps. Route across providers with consistent governance hooks. Start with OpenAI; extend to others as the control plane evolves.
                   </p>
                 </div>
               </div>
@@ -708,12 +631,12 @@ export default function Home() {
           <SectionTitle
             kicker="How it works"
             title="Secure by default, simple to adopt"
-            subtitle="This is safe to share publicly: high-level system behavior without implementation details."
+            subtitle="Safe to share publicly: high-level behavior without sensitive implementation detail."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <Card className="p-6">
-              <div className="text-sm font-semibold">End-to-end flow</div>
+              <div className="text-sm font-semibold">End-to-end flow (high level)</div>
               <ol className="mt-3 space-y-3 text-sm text-slate-600">
                 <li className="flex gap-3">
                   <div className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
@@ -729,8 +652,8 @@ export default function Home() {
                     2
                   </div>
                   <div>
-                    <div className="font-semibold text-slate-900">Tenant-bound encryption</div>
-                    <div>Session keys are derived per tenant and request to limit blast radius.</div>
+                    <div className="font-semibold text-slate-900">Tenant-bound session keys</div>
+                    <div>Session keys are derived per tenant and request context to reduce blast radius.</div>
                   </div>
                 </li>
                 <li className="flex gap-3">
@@ -739,7 +662,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="font-semibold text-slate-900">Governed processing</div>
-                    <div>QyberCore decrypts only inside a governed boundary and applies policies.</div>
+                    <div>Gateway decrypts only inside a governed boundary and applies policy/routing hooks.</div>
                   </div>
                 </li>
                 <li className="flex gap-3">
@@ -754,32 +677,72 @@ export default function Home() {
               </ol>
             </Card>
 
+            {/* UPDATED SECTION: “enterprise-grade” removed; replaced with “live vs upcoming” */}
             <Card className="p-6">
-              <div className="text-sm font-semibold">What makes this enterprise-grade</div>
+              <div className="text-sm font-semibold">What’s live today vs what’s upcoming</div>
               <p className="mt-2 text-sm text-slate-600">
-                Encryption is the wedge. The long-term value is the control plane: tenant lifecycle, policy packs, audit
-                sinks, routing rules, and cost/usage observability.
+                QyberCore launches with a focused post-quantum data plane. Control plane capabilities roll out with design partners
+                as governance and compliance requirements are validated in real deployments.
               </p>
 
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-                <div className="flex items-center gap-2 font-semibold text-slate-900">
-                  <Icon name="spark" className="h-4 w-4 text-blue-700" />
-                  Control plane roadmap
+              <div className="mt-4 grid gap-3">
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 font-semibold text-slate-900">
+                      <Icon name="shield" className="h-4 w-4 text-emerald-700" />
+                      Available now (Data Plane)
+                    </div>
+                    <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
+                      Private preview
+                    </span>
+                  </div>
+
+                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                    <li className="flex items-start gap-2">
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
+                      Post-quantum KEM handshake (Kyber) to derive per-session shared secrets
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
+                      Fast symmetric envelopes (AES-256-GCM) for request/response protection
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
+                      Governed boundary: decrypt → apply routing/policy → forward → re-encrypt
+                    </li>
+                  </ul>
                 </div>
-                <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                    Tenant onboarding + key rotation
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                    Governance policies (RBAC, quotas, approvals)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                    Audit logs + telemetry + exports (SIEM/warehouse)
-                  </li>
-                </ul>
+
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 font-semibold text-slate-900">
+                      <Icon name="spark" className="h-4 w-4 text-blue-700" />
+                      Upcoming (Control Plane)
+                    </div>
+                    <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700">
+                      Roadmap
+                    </span>
+                  </div>
+
+                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                    <li className="flex items-start gap-2">
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                      Tenant onboarding, isolation, and key lifecycle (rotation / revocation)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                      Policy packs: routing rules, quotas, approvals, and governance hooks
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
+                      Audit trails + telemetry + export sinks (SIEM / warehouse)
+                    </li>
+                  </ul>
+
+                  <p className="mt-3 text-xs text-slate-500">
+                    Roadmap items are planned capabilities and may evolve based on customer requirements and security review.
+                  </p>
+                </div>
               </div>
             </Card>
           </div>
@@ -790,7 +753,7 @@ export default function Home() {
           <SectionTitle
             kicker="Demo"
             title="Interactive demo (human-readable mode)"
-            subtitle="Try the gateway flow without needing an SDK. The demo displays plaintext for clarity, and also shows the encrypted payloads that would be sent in production."
+            subtitle="The website cannot run the FastAPI demo in Vercel today. This section describes the demo and links to it when hosted separately."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -799,7 +762,7 @@ export default function Home() {
               <ul className="mt-3 space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Gateway routing and provider call (demo)
+                  Gateway flow (demo environment)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
@@ -807,35 +770,35 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Threat model: “what an attacker records on the wire”
+                  “What an attacker records on the wire” (ciphertext-only view)
                 </li>
               </ul>
 
               <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900">
-                <span className="font-semibold">Demo Mode Notice:</span> This UI displays plaintext for readability. Real
-                SDK mode keeps plaintext off the wire.
+                <span className="font-semibold">Note:</span> On Vercel, <span className="font-semibold">/demo</span> will
+                not work unless the FastAPI service is deployed separately and linked here.
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5 flex flex-wrap gap-3">
                 <a
-                  href={DEMO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#early-access"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
                 >
-                  Launch demo console <Icon name="external" className="h-4 w-4" />
+                  Request demo access <Icon name="arrow" className="h-4 w-4" />
                 </a>
-              </div>
-
-              <div className="mt-3 text-xs text-slate-500">
-                Local dev: demo is served by FastAPI at <span className="font-semibold">:8000</span>.
+                <a
+                  href="/security"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
+                >
+                  Read Security & Cryptography
+                </a>
               </div>
             </Card>
 
             <Card className="p-6">
-              <div className="text-sm font-semibold">Production integrations (coming)</div>
+              <div className="text-sm font-semibold">Production integrations (roadmap)</div>
               <p className="mt-2 text-sm text-slate-600">
-                SDKs for Python and Node.js will provide a drop-in client that automatically handles:
+                SDKs for Python and Node.js are planned to provide a drop-in client that automatically handles:
               </p>
               <ul className="mt-3 space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
@@ -844,7 +807,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Tenant keys + request identifiers for audit trails
+                  Tenant identifiers + request identifiers for audit trails
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
@@ -853,9 +816,9 @@ export default function Home() {
               </ul>
 
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-                <div className="font-semibold text-slate-900">Public demo</div>
+                <div className="font-semibold text-slate-900">Demo hosting</div>
                 <div className="mt-1 text-slate-600">
-                  Human-readable console + encrypted payload visibility. SDK distribution: early access.
+                  The interactive console runs on the FastAPI service (local: <span className="font-semibold">:8000</span>). A public link will be added once hosted.
                 </div>
               </div>
             </Card>
@@ -867,7 +830,7 @@ export default function Home() {
           <SectionTitle
             kicker="Early access"
             title="Work with us as a design partner"
-            subtitle="If you’re deploying copilots or agents in production, we’ll help you route that traffic through a post-quantum secure, policy-enforced gateway."
+            subtitle="If you’re deploying copilots or agents in production, we’ll help you route that traffic through a post-quantum resistant, policy-enforced gateway."
           />
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 md:items-start">
@@ -884,7 +847,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Early pricing and deployment options
+                  Early deployment options
                 </li>
               </ul>
 
@@ -899,7 +862,7 @@ export default function Home() {
               </div>
 
               <div className="mt-4 text-xs text-slate-500">
-                Tip: place your logo at <span className="font-semibold">/public/logo.svg</span> (or .png) to avoid 404s.
+                Security claims describe intended design; production hardening and third-party review are in progress.
               </div>
             </Card>
 
@@ -942,7 +905,7 @@ export default function Home() {
                     rows={4}
                     value={form.useCase}
                     onChange={(e) => handleChange("useCase", e.target.value)}
-                    placeholder="e.g., secure copilots, enforce governance, route across providers, long-term confidentiality…"
+                    placeholder="e.g., secure copilots, governed boundary, routing across providers, long-term confidentiality…"
                     className="mt-1 w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none focus:border-slate-400"
                   />
                 </div>
@@ -952,9 +915,7 @@ export default function Home() {
                   disabled={status === "submitting"}
                   className={cn(
                     "inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm",
-                    status === "submitting"
-                      ? "bg-slate-200 text-slate-500"
-                      : "bg-slate-900 text-white hover:bg-slate-800"
+                    status === "submitting" ? "bg-slate-200 text-slate-500" : "bg-slate-900 text-white hover:bg-slate-800"
                   )}
                 >
                   {status === "submitting" ? "Submitting…" : "Request early access"}
@@ -977,14 +938,8 @@ export default function Home() {
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>© {year} QyberCore. All rights reserved.</div>
             <div className="flex flex-wrap gap-4">
-              {/* Footer demo link also points to FastAPI demo */}
-              <a
-                className="hover:text-slate-700"
-                href={DEMO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Demo
+              <a className="hover:text-slate-700" href="/security">
+                Security
               </a>
               <a className="hover:text-slate-700" href="mailto:contact@qybercore.com">
                 contact@qybercore.com
@@ -996,4 +951,3 @@ export default function Home() {
     </main>
   );
 }
-
