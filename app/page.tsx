@@ -825,10 +825,6 @@ export default function Home() {
                     <>Demo coming soon</>
                   )}
                 </a>
-                <div className="mt-2 text-xs text-slate-500">
-                  When you deploy the FastAPI gateway, set{" "}
-                  <span className="font-mono">NEXT_PUBLIC_DEMO_URL</span> to the public demo endpoint.
-                </div>
               </div>
             </Card>
 
