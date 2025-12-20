@@ -454,12 +454,12 @@ export default function Home() {
             </div>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Stop secrets from leaking and keep AI traffic{" "}
-              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
-                quantum-safe
-              </span>
-              .
-            </h1>
+  We stop AI secrets from leaking{" "}
+  <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
+    now and in the quantum future
+  </span>
+  .
+</h1>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
               QyberCore is a post-quantum secure <span className="font-semibold text-slate-900">data plane</span> for AI inference.
