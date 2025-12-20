@@ -64,12 +64,7 @@ function Icon({
             strokeWidth="1.8"
             strokeLinejoin="round"
           />
-          <path
-            d="M12 14.2v3"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+          <path d="M12 14.2v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       );
     case "route":
@@ -246,6 +241,108 @@ function LogoMark({ src = "/logo.svg" }: { src?: string }) {
   );
 }
 
+function PatentPill() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[12px] font-semibold text-slate-700 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+      <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
+      Patent pending (USPTO)
+    </span>
+  );
+}
+
+/**
+ * Responsive diagram: no horizontal scrolling.
+ * - Uses viewBox so it scales.
+ * - width: 100%, height auto.
+ * - keeps the diagram inside the card.
+ */
+function GatewayDiagram() {
+  return (
+    <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <svg
+        viewBox="0 0 860 280"
+        className="w-full h-auto"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="QyberCore gateway data-plane diagram"
+      >
+        <defs>
+          <marker id="arrowNavy" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0 0 L8 4 L0 8 Z" fill="#0f172a" />
+          </marker>
+          <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0 0 L8 4 L0 8 Z" fill="#2563eb" />
+          </marker>
+        </defs>
+
+        {/* client */}
+        <rect x="22" y="104" width="180" height="74" rx="16" fill="#fff" stroke="#e2e8f0" />
+        <text x="112" y="132" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="800">
+          Client Apps
+        </text>
+        <text x="112" y="152" textAnchor="middle" fontSize="10" fill="#64748b">
+          SDK / Agents
+        </text>
+
+        {/* handshake arrow */}
+        <path d="M202 141 L302 141" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
+        <text x="252" y="120" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
+          PQC key establishment
+        </text>
+        <text x="252" y="134" textAnchor="middle" fontSize="9" fill="#64748b">
+          shared secret → session keys
+        </text>
+
+        {/* gateway */}
+        <rect x="302" y="54" width="320" height="172" rx="20" fill="#fff" stroke="#cbd5e1" />
+        <text x="462" y="82" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="900">
+          QyberCore Gateway
+        </text>
+        <text x="462" y="100" textAnchor="middle" fontSize="10" fill="#64748b">
+          Governed boundary • Policy • Routing • Audit (roadmap)
+        </text>
+
+        <rect x="332" y="118" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dbeafe" />
+        <text x="462" y="145" textAnchor="middle" fontSize="10" fill="#1d4ed8" fontWeight="800">
+          Governed processing boundary
+        </text>
+
+        <rect x="332" y="168" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dcfce7" />
+        <text x="462" y="195" textAnchor="middle" fontSize="10" fill="#047857" fontWeight="800">
+          Encrypt response (AEAD)
+        </text>
+
+        {/* providers on right */}
+        <rect x="708" y="88" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
+        <text x="768" y="119" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
+          OpenAI
+        </text>
+
+        <rect x="708" y="152" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
+        <text x="768" y="183" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
+          Other providers
+        </text>
+
+        {/* routing arrows */}
+        <path
+          d="M622 132 C660 108 680 104 708 108"
+          stroke="#2563eb"
+          strokeWidth="2.2"
+          fill="none"
+          markerEnd="url(#arrowBlue)"
+        />
+        <path
+          d="M622 148 C660 180 680 184 708 180"
+          stroke="#2563eb"
+          strokeWidth="2.2"
+          fill="none"
+          markerEnd="url(#arrowBlue)"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
   const year = useMemo(() => new Date().getFullYear(), []);
 
@@ -279,10 +376,11 @@ export default function Home() {
   };
 
   // Demo note:
-  // - On Vercel, your FastAPI proxy isn't deployed yet.
-  // - Keep /demo for now (or set NEXT_PUBLIC_DEMO_URL later when you host the proxy).
+  // - Website is on Vercel
+  // - FastAPI demo currently runs locally on :8000
+  // Set NEXT_PUBLIC_DEMO_URL when gateway is deployed publicly (e.g., https://demo.qybercore.com)
   const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "/demo";
-  const DEMO_AVAILABLE = false; // flip to true when FastAPI demo is publicly reachable
+  const DEMO_AVAILABLE = false; // flip when FastAPI gateway demo is deployed
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -352,22 +450,23 @@ export default function Home() {
                 <Icon name="route" className="h-4 w-4 text-indigo-600" />
                 Policy + Routing Boundary
               </Pill>
+              <PatentPill />
             </div>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Post-quantum secure{" "}
+              Stop secrets from leaking and keep AI traffic{" "}
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
-                data plane
-              </span>{" "}
-              for AI inference — with a programmable control plane for policy, routing, and audit.
+                quantum-safe
+              </span>
+              .
             </h1>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              QyberCore helps mitigate long-term confidentiality risks (including{" "}
-              <span className="font-semibold text-slate-900">harvest-now, decrypt-later</span>) by using{" "}
-              <span className="font-semibold text-slate-900">lattice-based key establishment</span> and{" "}
-              <span className="font-semibold text-slate-900">authenticated encrypted envelopes</span>, while keeping a
-              governed boundary for policy and routing decisions.
+              QyberCore is a post-quantum secure <span className="font-semibold text-slate-900">data plane</span> for AI inference.
+              It helps keep prompts and responses confidential by establishing per-session secrets using{" "}
+              <span className="font-semibold text-slate-900">lattice-based key establishment</span> and returning
+              responses in <span className="font-semibold text-slate-900">authenticated encrypted envelopes</span>.
+              Plaintext is intended to exist only inside a governed gateway boundary where routing and policy controls apply.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -393,14 +492,21 @@ export default function Home() {
             </div>
 
             <div className="mt-7 rounded-3xl border border-slate-200 bg-white p-5">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-                Demo vs Production
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  Demo vs Production
+                </div>
+                <span className="text-xs font-semibold text-slate-600">
+                  Patent pending (USPTO)
+                </span>
               </div>
+
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 The demo UI displays plaintext for readability. In production SDK integrations, prompts and responses are
                 encrypted <span className="font-semibold text-slate-900">before leaving the client</span> and decrypted
                 only inside a governed boundary.
               </p>
+
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
                   <Icon name="key" className="h-4 w-4 text-slate-700" />
@@ -408,13 +514,17 @@ export default function Home() {
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
                   <Icon name="lock" className="h-4 w-4 text-slate-700" />
-                  AES-256-GCM envelopes
+                  AEAD envelopes (e.g., AES-GCM)
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-xs text-slate-700">
                   <Icon name="graph" className="h-4 w-4 text-slate-700" />
-                  Control plane: policy + audit (upcoming)
+                  Control plane (policy/audit) — roadmap
                 </span>
               </div>
+
+              <p className="mt-3 text-xs text-slate-500">
+                Certain techniques may be covered by one or more pending patent applications.
+              </p>
             </div>
           </div>
 
@@ -434,83 +544,8 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <svg
-  viewBox="0 0 860 280"
-  className="h-64 w-full max-w-full"
-  preserveAspectRatio="xMidYMid meet"
-  role="img"
-  aria-label="QyberCore diagram"
->
-                <defs>
-                  <marker id="arrowNavy" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                    <path d="M0 0 L8 4 L0 8 Z" fill="#0f172a" />
-                  </marker>
-                  <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                    <path d="M0 0 L8 4 L0 8 Z" fill="#2563eb" />
-                  </marker>
-                </defs>
-
-                <rect x="22" y="104" width="180" height="74" rx="16" fill="#fff" stroke="#e2e8f0" />
-                <text x="112" y="132" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="800">
-                  Client Apps
-                </text>
-                <text x="112" y="152" textAnchor="middle" fontSize="10" fill="#64748b">
-                  SDK / Agents
-                </text>
-
-                <path d="M202 141 L302 141" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
-                <text x="252" y="120" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
-                  PQC key establishment
-                </text>
-                <text x="252" y="134" textAnchor="middle" fontSize="9" fill="#64748b">
-                  shared secret → session keys
-                </text>
-
-                <rect x="302" y="54" width="320" height="172" rx="20" fill="#fff" stroke="#cbd5e1" />
-                <text x="462" y="82" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="900">
-                  QyberCore Gateway
-                </text>
-                <text x="462" y="100" textAnchor="middle" fontSize="10" fill="#64748b">
-                  Governed boundary • Policy • Routing • Metering (roadmap)
-                </text>
-
-                <rect x="332" y="118" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dbeafe" />
-                <text x="462" y="145" textAnchor="middle" fontSize="10" fill="#1d4ed8" fontWeight="800">
-                  Policy / routing boundary
-                </text>
-
-                <rect x="332" y="168" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dcfce7" />
-                <text x="462" y="195" textAnchor="middle" fontSize="10" fill="#047857" fontWeight="800">
-                  Encrypt response (AES-GCM)
-                </text>
-
-                <rect x="708" y="88" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
-                <text x="768" y="119" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
-                  OpenAI
-                </text>
-
-                <rect x="708" y="152" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
-                <text x="768" y="183" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
-                  Other providers
-                </text>
-
-                <path
-                  d="M622 132 C660 108 680 104 708 108"
-                  stroke="#2563eb"
-                  strokeWidth="2.2"
-                  fill="none"
-                  markerEnd="url(#arrowBlue)"
-                />
-                <path
-                  d="M622 148 C660 180 680 184 708 180"
-                  stroke="#2563eb"
-                  strokeWidth="2.2"
-                  fill="none"
-                  markerEnd="url(#arrowBlue)"
-                />
-              </svg>
-            </div>
+            {/* Responsive diagram: no horizontal scroll */}
+            <GatewayDiagram />
 
             <div className="mt-5 grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
@@ -519,8 +554,8 @@ export default function Home() {
                   Threat model
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  Attackers can record AI traffic today and attempt decryption later. The data plane is designed to reduce
-                  long-term exposure.
+                  Attackers can record AI traffic today and attempt decryption later. The data plane is designed to
+                  reduce long-term exposure.
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-white p-4">
@@ -552,7 +587,8 @@ export default function Home() {
                 TLS termination exposure
               </div>
               <p className="mt-2 text-sm text-slate-600">
-                Prompts can become plaintext inside internal networks, proxies, and observability tooling after TLS terminates.
+                Prompts can become plaintext inside internal networks, proxies, and observability tooling after TLS
+                terminates.
               </p>
             </Card>
             <Card className="p-6">
@@ -616,9 +652,9 @@ export default function Home() {
                   <Icon name="lock" className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Governed decryption boundary</div>
+                  <div className="text-sm font-semibold">Governed processing boundary</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    Decrypt only inside the gateway boundary where policies and routing decisions are enforced, then
+                    Decrypt only inside a controlled gateway boundary where policy and routing decisions apply, then
                     re-encrypt responses back to the client.
                   </p>
                   <ul className="mt-3 space-y-2 text-sm text-slate-600">
@@ -700,7 +736,7 @@ export default function Home() {
             <Card className="p-6">
               <div className="text-sm font-semibold">Security & Cryptography</div>
               <p className="mt-2 text-sm text-slate-600">
-                For reviewers and architects, we publish a high-level cryptographic description and threat model overview.
+                For architects and reviewers, we publish a high-level cryptographic description and threat model overview.
               </p>
 
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
@@ -714,13 +750,8 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="mt-3 text-xs text-slate-500">
-                  High-level by design; certain techniques may be covered by pending patent applications.
+                  Patent pending (USPTO). Certain implementation techniques may be covered by pending applications.
                 </div>
-                <Pill>
-  <Icon name="spark" className="h-4 w-4 text-indigo-600" />
-  Patent pending (USPTO)
-</Pill>
-
               </div>
             </Card>
           </div>
@@ -740,11 +771,11 @@ export default function Home() {
               <ul className="mt-3 space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Post-quantum key establishment using lattice-based cryptography
+                  Post-quantum key establishment (lattice-based)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Encrypted request and response envelopes (AES-256-GCM)
+                  Encrypted request/response envelopes (AEAD; e.g., AES-GCM)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
@@ -778,7 +809,7 @@ export default function Home() {
           <SectionTitle
             kicker="Demo"
             title="Interactive demo"
-            subtitle="The demo console will be available once the gateway service is deployed. For now, the site describes the system behavior and cryptographic approach at a high level."
+            subtitle="The website is deployed on Vercel, while the gateway demo runs as a separate service. We’ll enable the public demo after gateway deployment."
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -787,7 +818,7 @@ export default function Home() {
               <ul className="mt-3 space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Human-readable gateway flow
+                  Human-readable gateway flow (for clarity)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
@@ -825,6 +856,11 @@ export default function Home() {
                     <>Demo coming soon</>
                   )}
                 </a>
+
+                <div className="mt-2 text-xs text-slate-500">
+                  When the gateway is deployed, set <span className="font-mono">NEXT_PUBLIC_DEMO_URL</span> to the public endpoint.
+                  (Local dev demo runs on <span className="font-mono">http://localhost:8000</span>.)
+                </div>
               </div>
             </Card>
 
@@ -840,7 +876,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Tenant identifiers and request IDs for audit trails (control plane)
+                  Tenant identifiers + request IDs for audit trails (control plane)
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
@@ -851,7 +887,7 @@ export default function Home() {
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
                 <div className="font-semibold text-slate-900">Note</div>
                 <div className="mt-1 text-slate-600">
-                  The website is hosted independently from the gateway service. Demo availability depends on gateway deployment.
+                  The website and gateway are deployed independently. Public demo availability depends on gateway deployment.
                 </div>
               </div>
             </Card>
@@ -934,7 +970,7 @@ export default function Home() {
                     rows={4}
                     value={form.useCase}
                     onChange={(e) => handleChange("useCase", e.target.value)}
-                    placeholder="e.g., secure copilots, governance, routing, long-term confidentiality…"
+                    placeholder="e.g., keep LLM prompts/outputs confidential, reduce leakage risk, enforce policy and routing…"
                     className="mt-1 w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none focus:border-slate-400"
                   />
                 </div>
@@ -967,7 +1003,9 @@ export default function Home() {
 
         <footer className="mt-20 border-t border-slate-200 pt-8 text-sm text-slate-500">
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <div>© {year} QyberCore. All rights reserved.</div>
+            <div>
+              © {year} QyberCore. All rights reserved. <span className="ml-2">Patent pending (USPTO).</span>
+            </div>
             <div className="flex flex-wrap gap-4">
               <a className="hover:text-slate-700" href="/security-cryptography">
                 Security & Cryptography
