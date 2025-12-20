@@ -463,10 +463,8 @@ export default function Home() {
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
               QyberCore is a post-quantum secure <span className="font-semibold text-slate-900">data plane</span> for AI inference.
-              It helps keep prompts and responses confidential by establishing per-session secrets using{" "}
-              <span className="font-semibold text-slate-900">lattice-based key establishment</span> and returning
-              responses in <span className="font-semibold text-slate-900">authenticated encrypted envelopes</span>.
-              Plaintext is intended to exist only inside a governed gateway boundary where routing and policy controls apply.
+              It prevents AI prompts and responses from leaking by establishing per-session secrets using lattice-based key establishment and encrypting all requests and responses end-to-end.
+              Plaintext exists only inside a governed gateway boundary where routing, policy, and audit controls are enforced, reducing long-term confidentiality risk including harvest-now, decrypt-later attacks.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
