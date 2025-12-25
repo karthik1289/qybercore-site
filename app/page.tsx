@@ -204,9 +204,7 @@ function SectionTitle({
         {title}
       </h2>
       {subtitle ? (
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-          {subtitle}
-        </p>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{subtitle}</p>
       ) : null}
     </div>
   );
@@ -250,18 +248,12 @@ function PatentPill() {
   );
 }
 
-/**
- * Responsive diagram: no horizontal scrolling.
- * - Uses viewBox so it scales.
- * - width: 100%, height auto.
- * - keeps the diagram inside the card.
- */
 function GatewayDiagram() {
   return (
     <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
       <svg
         viewBox="0 0 860 280"
-        className="w-full h-auto"
+        className="h-auto w-full"
         preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label="QyberCore gateway data-plane diagram"
@@ -275,7 +267,6 @@ function GatewayDiagram() {
           </marker>
         </defs>
 
-        {/* client */}
         <rect x="22" y="104" width="180" height="74" rx="16" fill="#fff" stroke="#e2e8f0" />
         <text x="112" y="132" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="800">
           Client Apps
@@ -284,7 +275,6 @@ function GatewayDiagram() {
           SDK / Agents
         </text>
 
-        {/* handshake arrow */}
         <path d="M202 141 L302 141" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
         <text x="252" y="120" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
           PQC key establishment
@@ -293,7 +283,6 @@ function GatewayDiagram() {
           shared secret → session keys
         </text>
 
-        {/* gateway */}
         <rect x="302" y="54" width="320" height="172" rx="20" fill="#fff" stroke="#cbd5e1" />
         <text x="462" y="82" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="900">
           QyberCore Gateway
@@ -312,7 +301,6 @@ function GatewayDiagram() {
           Encrypt response (AEAD)
         </text>
 
-        {/* providers on right */}
         <rect x="708" y="88" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
         <text x="768" y="119" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
           OpenAI
@@ -323,7 +311,6 @@ function GatewayDiagram() {
           Other providers
         </text>
 
-        {/* routing arrows */}
         <path
           d="M622 132 C660 108 680 104 708 108"
           stroke="#2563eb"
@@ -350,8 +337,7 @@ export default function Home() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleChange = (field: keyof FormState, value: string) =>
-    setForm((p) => ({ ...p, [field]: value }));
+  const handleChange = (field: keyof FormState, value: string) => setForm((p) => ({ ...p, [field]: value }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -375,12 +361,9 @@ export default function Home() {
     }
   };
 
-  // Demo note:
-  // - Website is on Vercel
-  // - FastAPI demo currently runs locally on :8000
-  // Set NEXT_PUBLIC_DEMO_URL when gateway is deployed publicly (e.g., https://demo.qybercore.com)
+  // Interactive demo endpoint (later)
   const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "/demo";
-  const DEMO_AVAILABLE = false; // flip when FastAPI gateway demo is deployed
+  const DEMO_AVAILABLE = false;
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -454,17 +437,18 @@ export default function Home() {
             </div>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-  We stop AI secrets from leaking{" "}
-  <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
-    now and in the quantum future
-  </span>
-  .
-</h1>
+              We stop AI secrets from leaking{" "}
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
+                now and in the quantum future
+              </span>
+              .
+            </h1>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              QyberCore is a post-quantum secure <span className="font-semibold text-slate-900">data plane</span> for AI inference.
-              It prevents AI prompts and responses from leaking by establishing per-session secrets using <span className="font-semibold text-slate-900">lattice-based</span> key establishment and encrypting all requests and responses end-to-end.
-              Plaintext exists only inside a governed gateway boundary where routing, policy, and audit controls are enforced, reducing long-term confidentiality risk including harvest-now, decrypt-later attacks.
+              QyberCore is a post-quantum secure <span className="font-semibold text-slate-900">data plane</span> for AI
+              inference. It prevents AI prompts and responses from leaking by establishing per-session secrets using{" "}
+              <span className="font-semibold text-slate-900">lattice-based</span> key establishment and encrypting all
+              requests and responses end-to-end.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -475,17 +459,14 @@ export default function Home() {
                 Request early access <Icon name="arrow" className="h-4 w-4" />
               </a>
 
+              {/* When interactive demo isn't available, open /demo (video) */}
               <a
-                href={DEMO_AVAILABLE ? DEMO_URL : "#demo"}
-                onClick={(e) => {
-                  if (!DEMO_AVAILABLE) e.preventDefault();
-                }}
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm",
-                  DEMO_AVAILABLE ? "hover:bg-slate-50" : "opacity-60 cursor-not-allowed"
-                )}
+                href={DEMO_AVAILABLE ? DEMO_URL : "/demo"}
+                target={DEMO_AVAILABLE ? undefined : "_blank"}
+                rel={DEMO_AVAILABLE ? undefined : "noreferrer"}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
               >
-                View interactive demo
+                View demo <Icon name="arrow" className="h-4 w-4" />
               </a>
             </div>
 
@@ -494,9 +475,7 @@ export default function Home() {
                 <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
                   Demo vs Production
                 </div>
-                <span className="text-xs font-semibold text-slate-600">
-                  Patent pending (USPTO)
-                </span>
+                <span className="text-xs font-semibold text-slate-600">Patent pending (USPTO)</span>
               </div>
 
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -530,9 +509,7 @@ export default function Home() {
           <Card className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-                  Security boundary
-                </div>
+                <div className="text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-500">Security boundary</div>
                 <div className="mt-2 text-sm text-slate-600">
                   Encrypt on client → governed processing → re-encrypt response
                 </div>
@@ -542,7 +519,6 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Responsive diagram: no horizontal scroll */}
             <GatewayDiagram />
 
             <div className="mt-5 grid gap-3 md:grid-cols-2">
@@ -630,16 +606,6 @@ export default function Home() {
                     Establish per-session shared secrets via lattice-based cryptography and derive short-lived symmetric
                     session keys for fast, authenticated encryption.
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                      Session-scoped keys reduce blast radius
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                      Encrypted request + encrypted response envelopes
-                    </li>
-                  </ul>
                 </div>
               </div>
             </Card>
@@ -655,16 +621,6 @@ export default function Home() {
                     Decrypt only inside a controlled gateway boundary where policy and routing decisions apply, then
                     re-encrypt responses back to the client.
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                      Centralized policy/routing boundary
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                      Built for audit + telemetry (roadmap)
-                    </li>
-                  </ul>
                 </div>
               </div>
             </Card>
@@ -679,8 +635,7 @@ export default function Home() {
                 <div className="flex-1">
                   <div className="text-sm font-semibold">Provider-agnostic routing plane</div>
                   <p className="mt-2 text-sm text-slate-600">
-                    One integration surface for apps. Route across providers with consistent governance. Start with one
-                    provider; expand as routing and policy controls mature.
+                    One integration surface for apps. Route across providers with consistent governance.
                   </p>
                 </div>
               </div>
@@ -701,22 +656,10 @@ export default function Home() {
               <div className="text-sm font-semibold">End-to-end flow</div>
               <ol className="mt-3 space-y-3 text-sm text-slate-600">
                 {[
-                  {
-                    t: "Post-quantum key establishment",
-                    d: "Client establishes a shared secret using lattice-based cryptography.",
-                  },
-                  {
-                    t: "Tenant-scoped session encryption",
-                    d: "Session keys are derived per tenant/request context to limit blast radius.",
-                  },
-                  {
-                    t: "Governed processing boundary",
-                    d: "Gateway decrypts only inside a controlled boundary and applies policy and routing.",
-                  },
-                  {
-                    t: "Encrypted response return",
-                    d: "Responses are re-encrypted and returned to the client as ciphertext.",
-                  },
+                  { t: "Post-quantum key establishment", d: "Client establishes a shared secret using lattice-based cryptography." },
+                  { t: "Tenant-scoped session encryption", d: "Session keys are derived per tenant/request context to limit blast radius." },
+                  { t: "Governed processing boundary", d: "Gateway decrypts only inside a controlled boundary and applies policy and routing." },
+                  { t: "Encrypted response return", d: "Responses are re-encrypted and returned to the client as ciphertext." },
                 ].map((x, idx) => (
                   <li className="flex gap-3" key={x.t}>
                     <div className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
@@ -806,89 +749,38 @@ export default function Home() {
         <section id="demo" className="mt-20">
           <SectionTitle
             kicker="Demo"
-            title="Interactive demo"
-            subtitle="The website is deployed on Vercel, while the gateway demo runs as a separate service. We’ll enable the public demo after gateway deployment."
+            title="Demo video"
+            subtitle="We keep the homepage clean. The video lives on /demo for a focused viewing experience."
           />
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <Card className="p-6">
-              <div className="text-sm font-semibold">What the demo shows</div>
-              <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Human-readable gateway flow (for clarity)
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Example encrypted request/response envelopes
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  Visibility into “what an attacker records on the wire”
-                </li>
-              </ul>
-
-              <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900">
-                <span className="font-semibold">Demo mode notice:</span> Demo displays plaintext for readability. Production
-                SDK mode encrypts prompts and responses before leaving the client.
-              </div>
-
-              <div className="mt-5">
-                <a
-                  href={DEMO_URL}
-                  onClick={(e) => {
-                    if (!DEMO_AVAILABLE) e.preventDefault();
-                  }}
-                  className={cn(
-                    "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm",
-                    DEMO_AVAILABLE
-                      ? "bg-slate-900 text-white hover:bg-slate-800"
-                      : "bg-slate-200 text-slate-500 cursor-not-allowed"
-                  )}
-                >
-                  {DEMO_AVAILABLE ? (
-                    <>
-                      Launch demo console <Icon name="arrow" className="h-4 w-4" />
-                    </>
-                  ) : (
-                    <>Demo coming soon</>
-                  )}
-                </a>
-
-                <div className="mt-2 text-xs text-slate-500">
-                  When the gateway is deployed, set <span className="font-mono">NEXT_PUBLIC_DEMO_URL</span> to the public endpoint.
-                  (Local dev demo runs on <span className="font-mono">http://localhost:8000</span>.)
+          <Card className="mt-8 p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <div className="text-sm font-semibold">QyberCore walkthrough</div>
+                <p className="mt-2 text-sm text-slate-600">
+                  Data Plane + Control Plane UX, recorded from the real console.
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
+                  <span className="rounded-full bg-slate-50 px-3 py-1">~2 min</span>
+                  <span className="rounded-full bg-slate-50 px-3 py-1">Data Plane</span>
+                  <span className="rounded-full bg-slate-50 px-3 py-1">Control Plane</span>
                 </div>
               </div>
-            </Card>
 
-            <Card className="p-6">
-              <div className="text-sm font-semibold">Production integrations (roadmap)</div>
-              <p className="mt-2 text-sm text-slate-600">
-                SDKs (Python and Node.js) will provide a drop-in client that automatically handles:
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Post-quantum handshake + envelope encryption
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Tenant identifiers + request IDs for audit trails (control plane)
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 text-blue-700" />
-                  Routing headers + policy enforcement hooks
-                </li>
-              </ul>
+              <a
+                href="/demo"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+              >
+                Watch demo <Icon name="arrow" className="h-4 w-4" />
+              </a>
+            </div>
+          </Card>
 
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-                <div className="font-semibold text-slate-900">Note</div>
-                <div className="mt-1 text-slate-600">
-                  The website and gateway are deployed independently. Public demo availability depends on gateway deployment.
-                </div>
-              </div>
-            </Card>
+          <div className="mt-4 text-xs text-slate-500">
+            Put <span className="font-mono">qybercore_demo.mp4</span> in <span className="font-mono">/public</span> so it’s available at{" "}
+            <span className="font-mono">/qybercore_demo.mp4</span>.
           </div>
         </section>
 
@@ -978,9 +870,7 @@ export default function Home() {
                   disabled={status === "submitting"}
                   className={cn(
                     "inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm",
-                    status === "submitting"
-                      ? "bg-slate-200 text-slate-500"
-                      : "bg-slate-900 text-white hover:bg-slate-800"
+                    status === "submitting" ? "bg-slate-200 text-slate-500" : "bg-slate-900 text-white hover:bg-slate-800"
                   )}
                 >
                   {status === "submitting" ? "Submitting…" : "Request early access"}

@@ -1,15 +1,36 @@
 export default function DemoPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
-      <div className="mx-auto max-w-3xl px-4 py-16">
-        <h1 className="text-3xl font-semibold tracking-tight">Demo</h1>
-        <p className="mt-3 text-slate-600">
-          The interactive demo console runs on the QyberCore FastAPI service (local development: <strong>:8000</strong>).
-          It is not hosted inside Vercel at the moment.
-        </p>
-        <p className="mt-6 text-slate-600">
-          Want access to a hosted demo? Email <a className="font-semibold underline" href="mailto:contact@qybercore.com">contact@qybercore.com</a>.
-        </p>
+    <main className="min-h-screen bg-slate-950 text-white">
+      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-semibold">QyberCore Demo</h1>
+            <p className="mt-2 text-sm text-slate-400">
+              Data Plane + Control Plane walkthrough
+            </p>
+          </div>
+
+          <a
+            href="/"
+            className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold hover:bg-white/15"
+          >
+            Back to site
+          </a>
+        </div>
+
+        <div className="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black">
+          <video
+            src="/qybercore_demo.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full"
+          />
+        </div>
+
+        <div className="mt-4 text-xs text-slate-400">
+          Tip: watch in full-screen for best clarity.
+        </div>
       </div>
     </main>
   );
