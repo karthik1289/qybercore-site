@@ -252,7 +252,7 @@ function GatewayDiagram() {
   return (
     <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
       <svg
-        viewBox="0 0 860 280"
+        viewBox="0 0 860 320"
         className="h-auto w-full"
         preserveAspectRatio="xMidYMid meet"
         role="img"
@@ -267,23 +267,26 @@ function GatewayDiagram() {
           </marker>
         </defs>
 
-        <rect x="22" y="104" width="180" height="74" rx="16" fill="#fff" stroke="#e2e8f0" />
-        <text x="112" y="132" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="800">
+        {/* Client */}
+        <rect x="22" y="124" width="180" height="74" rx="16" fill="#fff" stroke="#e2e8f0" />
+        <text x="112" y="152" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="800">
           Client Apps
         </text>
-        <text x="112" y="152" textAnchor="middle" fontSize="10" fill="#64748b">
+        <text x="112" y="172" textAnchor="middle" fontSize="10" fill="#64748b">
           SDK / Agents
         </text>
 
-        <path d="M202 141 L302 141" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
-        <text x="252" y="120" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
+        {/* Arrow: Client → Gateway */}
+        <path d="M202 161 L302 161" stroke="#0f172a" strokeWidth="2.2" markerEnd="url(#arrowNavy)" />
+        <text x="252" y="140" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="700">
           PQC key establishment
         </text>
-        <text x="252" y="134" textAnchor="middle" fontSize="9" fill="#64748b">
+        <text x="252" y="154" textAnchor="middle" fontSize="9" fill="#64748b">
           shared secret → session keys
         </text>
 
-        <rect x="302" y="54" width="320" height="172" rx="20" fill="#fff" stroke="#cbd5e1" />
+        {/* Gateway container */}
+        <rect x="302" y="54" width="320" height="212" rx="20" fill="#fff" stroke="#cbd5e1" />
         <text x="462" y="82" textAnchor="middle" fontSize="12" fill="#0f172a" fontWeight="900">
           QyberCore Gateway
         </text>
@@ -291,35 +294,45 @@ function GatewayDiagram() {
           Governed boundary • Policy • Routing • Audit (roadmap)
         </text>
 
-        <rect x="332" y="118" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dbeafe" />
-        <text x="462" y="145" textAnchor="middle" fontSize="10" fill="#1d4ed8" fontWeight="800">
+        {/* Governed processing */}
+        <rect x="332" y="114" width="260" height="38" rx="12" fill="#f8fafc" stroke="#dbeafe" />
+        <text x="462" y="138" textAnchor="middle" fontSize="10" fill="#1d4ed8" fontWeight="800">
           Governed processing boundary
         </text>
 
-        <rect x="332" y="168" width="260" height="42" rx="12" fill="#f8fafc" stroke="#dcfce7" />
-        <text x="462" y="195" textAnchor="middle" fontSize="10" fill="#047857" fontWeight="800">
+        {/* NEW: PII Detection */}
+        <rect x="332" y="158" width="260" height="38" rx="12" fill="#faf5ff" stroke="#e9d5ff" />
+        <text x="462" y="182" textAnchor="middle" fontSize="10" fill="#6d28d9" fontWeight="800">
+          PII detection & selective protection
+        </text>
+
+        {/* Encrypt response */}
+        <rect x="332" y="202" width="260" height="38" rx="12" fill="#f8fafc" stroke="#dcfce7" />
+        <text x="462" y="226" textAnchor="middle" fontSize="10" fill="#047857" fontWeight="800">
           Encrypt response (AEAD)
         </text>
 
-        <rect x="708" y="88" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
-        <text x="768" y="119" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
+        {/* Providers */}
+        <rect x="708" y="110" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
+        <text x="768" y="141" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
           OpenAI
         </text>
 
-        <rect x="708" y="152" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
-        <text x="768" y="183" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
+        <rect x="708" y="174" width="120" height="52" rx="14" fill="#fff" stroke="#e2e8f0" />
+        <text x="768" y="205" textAnchor="middle" fontSize="10" fill="#0f172a" fontWeight="800">
           Other providers
         </text>
 
+        {/* Gateway → Providers */}
         <path
-          d="M622 132 C660 108 680 104 708 108"
+          d="M622 160 C660 136 680 132 708 136"
           stroke="#2563eb"
           strokeWidth="2.2"
           fill="none"
           markerEnd="url(#arrowBlue)"
         />
         <path
-          d="M622 148 C660 180 680 184 708 180"
+          d="M622 176 C660 208 680 212 708 208"
           stroke="#2563eb"
           strokeWidth="2.2"
           fill="none"
@@ -430,6 +443,10 @@ export default function Home() {
                 Tenant-Scoped Encryption
               </Pill>
               <Pill>
+  <Icon name="spark" className="h-4 w-4 text-purple-600" />
+  Automatic PII Protection
+</Pill>
+              <Pill>
                 <Icon name="route" className="h-4 w-4 text-indigo-600" />
                 Policy + Routing Boundary
               </Pill>
@@ -446,9 +463,10 @@ export default function Home() {
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
               QyberCore is a post-quantum secure <span className="font-semibold text-slate-900">data plane</span> for AI
-              inference. It prevents AI prompts and responses from leaking by establishing per-session secrets using{" "}
-              <span className="font-semibold text-slate-900">lattice-based</span> key establishment and encrypting all
-              requests and responses end-to-end.
+inference. It prevents AI prompts and responses from leaking by establishing per-session secrets using{" "}
+<span className="font-semibold text-slate-900">lattice-based</span> key establishment and by
+automatically detecting and protecting sensitive fields inside prompts before they ever leave your
+trust boundary.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -561,8 +579,8 @@ export default function Home() {
                 TLS termination exposure
               </div>
               <p className="mt-2 text-sm text-slate-600">
-                Prompts can become plaintext inside internal networks, proxies, and observability tooling after TLS
-                terminates.
+                Prompts can become plaintext inside internal networks, proxies, logs, and observability tooling after
+TLS terminates often exposing embedded personal, customer, and proprietary data.
               </p>
             </Card>
             <Card className="p-6">
@@ -595,6 +613,21 @@ export default function Home() {
           />
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <Card className="p-6">
+  <div className="flex items-start gap-3">
+    <div className="mt-0.5 rounded-2xl bg-purple-50 p-2 text-purple-700">
+      <Icon name="spark" className="h-5 w-5" />
+    </div>
+    <div>
+      <div className="text-sm font-semibold">Automatic PII detection & protection</div>
+      <p className="mt-2 text-sm text-slate-600">
+        QyberCore automatically identifies sensitive fields inside prompts such as personal data,
+        credentials, and customer identifiers and selectively encrypts or tokenizes them before
+        routing traffic to model providers.
+      </p>
+    </div>
+  </div>
+</Card>
             <Card className="p-6">
               <div className="flex items-start gap-3">
                 <div className="mt-0.5 rounded-2xl bg-emerald-50 p-2 text-emerald-700">
@@ -695,6 +728,22 @@ export default function Home() {
                 </div>
               </div>
             </Card>
+            <Card className="p-6">
+  <div className="text-sm font-semibold">What model providers see</div>
+  <p className="mt-2 text-sm text-slate-600">
+    Model providers never see raw sensitive data. Protected fields are replaced with reversible
+    tokens that preserve structure and meaning without exposing real values.
+  </p>
+
+  <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-700 font-mono">
+    Customer PII_NAME_42F9 reported an issue with order PII_ORDER_8891.
+  </div>
+
+  <p className="mt-3 text-xs text-slate-500">
+    Tokens are resolved only inside the QyberCore governed boundary before responses are returned
+    to the client.
+  </p>
+</Card>
           </div>
         </section>
 
@@ -740,6 +789,10 @@ export default function Home() {
                   <Icon name="arrow" className="mt-0.5 h-4 w-4 text-blue-700" />
                   Audit logs and telemetry export paths
                 </li>
+                <li className="flex items-start gap-2">
+  <Icon name="arrow" className="mt-0.5 h-4 w-4 text-blue-700" />
+  Field-level PII policies and per-tenant protection rules
+</li>
               </ul>
             </Card>
           </div>
@@ -906,6 +959,9 @@ export default function Home() {
               </a>
             </div>
           </div>
+          <p className="mt-2 text-xs text-slate-500">
+  PII detection and protection capabilities are policy driven and configurable per tenant.
+</p>
         </footer>
       </div>
     </main>
